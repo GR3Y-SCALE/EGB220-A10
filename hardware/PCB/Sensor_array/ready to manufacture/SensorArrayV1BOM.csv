@@ -1,0 +1,8 @@
+"Reference","Value","Datasheet","Footprint","Qty","DNP","DigiKeyPartNumber"
+"C1","0.1uF","~","Capacitor_SMD:C_0805_2012Metric","1","","478-KGM21NR71H104KTTR-ND"
+"C2","1.0uF","~","Capacitor_SMD:C_0805_2012Metric","1","","1276-1029-2-ND"
+"J2","8x2 Sensor Connector","~","Connector_PinHeader_2.54mm:PinHeader_2x08_P2.54mm_Vertical","1","",""
+"Q1","BSS214NW","https://www.infineon.com/dgdl/Infineon-BSS214NW-DS-v02_02-en.pdf?fileId=db3a30431b3e89eb011b695aebc01bde","Package_TO_SOT_SMD:SOT-323_SC-70","1","","QRE1113GRTR-ND"
+"R1,R2,R3,R4,R14,R15","47R","~","Resistor_SMD:R_0805_2012Metric","6","","RMCF0805JT47R0TR-ND"
+"R5,R6,R7,R8,R9,R10,R11,R12,R13","47k","~","Resistor_SMD:R_0805_2012Metric","9","","RMCF0805JT47K0TR-ND"
+"U1,U2,U3,U6,U7,U8,U9,U10","QRE1113GR","http://www.onsemi.com/pub/Collateral/QRE1113-D.PDF","OptoDevice:OnSemi_CASE100CY","8","",""

@@ -4807,6 +4807,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 252.73 41.275 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "afd69688-2bc1-4663-ba77-3f8742b97eaa")
 		)
@@ -4867,6 +4876,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 144.145 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 144.145 92.71 0)
 			(effects
 				(font
@@ -5103,6 +5121,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 257.175 116.205 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3e578776-7fe0-418b-9361-c2b4f3151188")
 		)
@@ -5162,6 +5189,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 45.085 28.575 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 45.085 28.575 0)
 			(effects
 				(font
@@ -5240,6 +5276,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 257.175 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "16d9e86a-33a4-4589-901f-2bb5b88e96a2")
 		)
@@ -5281,7 +5326,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_2x08_P2.54mm_Vertical"
 			(at 40.64 95.25 0)
 			(effects
 				(font
@@ -5300,6 +5345,15 @@
 			)
 		)
 		(property "Description" "Generic connectable mounting pin connector, double row, 02x08, counter clockwise pin numbering scheme (similar to DIP package numbering), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 40.64 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" "S7111-ND"
 			(at 40.64 95.25 0)
 			(effects
 				(font
@@ -5423,6 +5477,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 267.335 57.785 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e570f6bd-35c6-4680-a94c-4b24c6df7df0")
 		)
@@ -5485,6 +5548,15 @@
 			)
 		)
 		(property "Description" "Positive 1.5A 35V Linear Regulator, Fixed Output 5V, TO-220/TO-263/TO-252"
+			(at 50.8 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 50.8 154.94 0)
 			(effects
 				(font
@@ -5566,6 +5638,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 241.3 53.975 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4d109944-330f-4625-9a36-fab881dab841")
 		)
@@ -5628,6 +5709,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 257.175 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 257.175 67.31 0)
 			(effects
 				(font
@@ -5772,6 +5862,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 234.95 53.975 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "782f3892-06c1-4b1d-8c1e-0acb2e17bc3f")
 		)
@@ -5839,6 +5938,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 37.465 46.355 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "6b14c6dc-37ca-4e09-8671-9d6952f8a565")
 		)
@@ -5898,6 +6006,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 45.085 46.355 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 45.085 46.355 0)
 			(effects
 				(font
@@ -6108,6 +6225,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 234.95 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "3d4a0f68-8af1-4484-af5a-ad7e5586955b")
 		)
@@ -6170,6 +6296,15 @@
 			)
 		)
 		(property "Description" "Schottky diode"
+			(at 241.3 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 241.3 69.85 0)
 			(effects
 				(font
@@ -6446,6 +6581,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 267.335 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "58324d44-4b6d-4e4a-8353-3f7ffadbf017")
 		)
@@ -6582,6 +6726,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 241.3 118.745 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "dbf2766a-eef9-46c9-9362-83bc617ca676")
 		)
@@ -6644,6 +6797,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 267.335 116.205 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 267.335 116.205 0)
 			(effects
 				(font
@@ -6851,6 +7013,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 16.51 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "308a23bd-feb0-4e1b-bd98-b7ee3cac509f")
 		)
@@ -6912,6 +7083,15 @@
 			)
 		)
 		(property "Description" "8-bit serial-in parallel-out shift register"
+			(at 109.22 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 109.22 39.37 0)
 			(effects
 				(font
@@ -7084,6 +7264,15 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
+			(at 267.335 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 267.335 106.68 0)
 			(effects
 				(font
@@ -7490,6 +7679,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 37.465 28.575 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "1fe02599-6667-41a3-8da9-b05565196316")
 		)
@@ -7560,6 +7758,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 241.3 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4ef1b999-2cf7-4d98-88e9-440463083bfb")
 		)
@@ -7619,6 +7826,15 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 252.73 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 252.73 90.17 0)
 			(effects
 				(font
@@ -7697,6 +7913,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 234.95 118.745 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "dcbb0403-8273-45bc-b478-a488cfc6e117")
 		)
@@ -7756,6 +7981,15 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
+			(at 37.465 37.465 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 37.465 37.465 0)
 			(effects
 				(font
@@ -7900,6 +8134,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 257.175 57.785 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "487eebe2-5205-4c1d-bd32-e6a98883a2d6")
 		)
@@ -8035,6 +8278,15 @@
 				(hide yes)
 			)
 		)
+		(property "DigiKeyPartNumber" ""
+			(at 234.95 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "725b9df5-d54e-4eba-91a8-8479bf92c8d1")
 		)
@@ -8094,6 +8346,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 45.085 37.465 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "DigiKeyPartNumber" ""
 			(at 45.085 37.465 0)
 			(effects
 				(font
