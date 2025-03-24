@@ -2875,7 +2875,7 @@
 		)
 		(uuid "d2a864ca-172f-419c-b390-406911ead954")
 	)
-	(label "S1"
+	(label "S8"
 		(at 114.3 48.26 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2897,7 +2897,7 @@
 		)
 		(uuid "26c2710c-7af7-473f-a125-f53c71492297")
 	)
-	(label "S2"
+	(label "S7"
 		(at 118.745 73.66 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2919,7 +2919,7 @@
 		)
 		(uuid "5a22f07b-b732-4c61-bdfc-4c8f70e820a7")
 	)
-	(label "S7"
+	(label "S2"
 		(at 198.755 48.26 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2941,7 +2941,7 @@
 		)
 		(uuid "69d320cc-3db9-4ee1-96a5-cf0146e1af12")
 	)
-	(label "S3"
+	(label "S6"
 		(at 141.605 48.26 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2974,7 +2974,7 @@
 		)
 		(uuid "94b5fdf6-9548-45da-b38d-f6318b1d8c4e")
 	)
-	(label "S5"
+	(label "S4"
 		(at 169.545 48.26 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2985,7 +2985,7 @@
 		)
 		(uuid "956c2b36-ba48-4231-bc88-7e7cf8da119c")
 	)
-	(label "S6"
+	(label "S3"
 		(at 173.99 73.66 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3018,7 +3018,7 @@
 		)
 		(uuid "e3cd982a-c7de-4dc3-a771-aaa8b6c8511f")
 	)
-	(label "S8"
+	(label "S1"
 		(at 203.2 73.66 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3040,7 +3040,7 @@
 		)
 		(uuid "efc98e44-10be-43f3-a674-f22e869e5c6c")
 	)
-	(label "S4"
+	(label "S5"
 		(at 146.05 73.66 0)
 		(fields_autoplaced yes)
 		(effects
