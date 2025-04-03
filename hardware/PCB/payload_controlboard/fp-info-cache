@@ -1,4 +1,4 @@
-24430914713633050
+24427427742100806
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -1676,13 +1676,6 @@ Button_Switch_THT
 Push_E-Switch_KS01Q01
 E-Switch KS01Q01 http://spec_sheets.e-switch.com/specs/29-KS01Q01.pdf
 Push Button
-0
-4
-4
-Button_Switch_THT
-SO4_222A-M-V-B_CTS
-
-222AMVBAR 
 0
 4
 4
@@ -65841,13 +65834,6 @@ AI Kendryte K210 RISC-V
 0
 85
 72
-Module
-Teensy2.0
-11
-
-0
-31
-31
 Module
 Texas_EUK_R-PDSS-T7_THT
 Texas Instruments EUK 7 Pin Double Sided Module
