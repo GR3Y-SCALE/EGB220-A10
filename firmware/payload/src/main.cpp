@@ -5,7 +5,7 @@
 #define S2 PIN_F1
 #define S3 PIN_F4
 #define S4 PIN_F5
-const int8_t IRSENSORS[4] = {S3,S2,S4,S1};
+const int8_t IRSENSORS[4] = {S3,S2,S4,S1}; // Order of IR sensors on the PCB
 const int8_t numSensors = 4;
 #define laser_en PIN_F6
 Servo servoX;
@@ -127,7 +127,7 @@ void scanServoX() {
 
     angle = (servoX.read() + dir * 5);
     if (angle >= 180 || angle <= 0) {
-        dir = !dir; // flip direction
+        dir = !dir;
     }
     servoX.write(constrain(angle, 0, 180));
 }

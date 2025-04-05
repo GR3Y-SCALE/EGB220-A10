@@ -48,14 +48,14 @@ void setup() {
 
 void readsensors(int sValues[]){
   // Read values from the IR sensors using defined pin names and store them to sValues[]
-  sValues[0] = analogRead(s1);
-  sValues[1] = analogRead(s2);
-  sValues[2] = analogRead(s3);
-  sValues[3] = analogRead(s4);
-  sValues[4] = analogRead(s5);
-  sValues[5] = analogRead(s6);
-  sValues[6] = analogRead(s7);
-  sValues[7] = analogRead(s8);
+  sValues[0] = analogRead(s8);
+  sValues[1] = analogRead(s7);
+  sValues[2] = analogRead(s6);
+  sValues[3] = analogRead(s5);
+  sValues[4] = analogRead(s4);
+  sValues[5] = analogRead(s3);
+  sValues[6] = analogRead(s2);
+  sValues[7] = analogRead(s1);
 }
 
 
@@ -155,5 +155,4 @@ void loop() {
   
     delay(50);  // Short delay for smooth motor control
 
-    //blah blah blah
   }
