@@ -26,7 +26,7 @@ Servo servoY;
 const int8_t IRSENSORS[4] = {S1,S2,S3,S4}; // Order of IR sensors on the PCB
 const int8_t numSensors = 4;
 double sensorCalibration[numSensors] = {0,0,0,0};
-const float detectionThreshold = 0.100; // 100mV drop from background level
+const float detectionThreshold = 0.150; // 100mV drop from background level
 int8_t servoXRestPos = 90;
 int8_t servoYRestPos = 90;
 volatile bool calibrationRequested = false;
@@ -56,8 +56,15 @@ void setup () {
 
     pinMode(CAL_BTN, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(CAL_BTN), onCalibrateISR, FALLING);
+    Serial.begin(9600);
 }
 void loop () {
+    for (int i = 0; i < 4; i++) {
+        Serial.print(sensorCalibration[i]);
+        Serial.print(" "); 
+      }
+      Serial.println(); 
+
     if (calibrationRequested) {
         calibrateSensors();
         calibrationRequested = false;
