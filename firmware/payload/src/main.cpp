@@ -5,9 +5,9 @@
 #define S2 PIN_F1
 #define S3 PIN_F4
 #define S4 PIN_F5
-#define laser_en PIN_F6
-#define SZ_sig PIN_B7
-#define TRK_sig PIN_D0
+#define LASER_EN PIN_F6
+#define SZ_SIG PIN_B7
+#define TRK_SIG PIN_D0
 #define CAL_BTN PIN_D1
 
 /* SENSOR CONFIGURATION
@@ -24,21 +24,20 @@
 
 Servo servoX;
 Servo servoY;
-const int8_t IRSENSORS[4] = {S3,S2,S4,S1}; // Order of IR sensors on the PCB
+const int8_t IRSENSORS[4] = {S2,S3,S1,S4}; // Order of IR sensors on the PCB
 const int8_t numSensors = 4;
-double sensorCalibration[numSensors] = {0,0,0,0};
-const float detectionThreshold = 0.100; // 100mV drop from background level
-const float hysteresisMargin = 0.020; // 20mV hysteresis margin to stop fluctuating sensor states. 
+
+int sensorCalibration[numSensors] = {0,0,0,0};
+const int detectionThreshold = 20; // 20 5mV increments, therefore 100mV threshold
+
 int8_t servoXRestPos = 90;
 int8_t servoYRestPos = 90;
-volatile bool calibrationRequested = false;
 
 // Function definitions
 void calibrateSensors();
 bool readSensor(int8_t i);
 bool targetAcquired();
 void scanServoX();
-void onCalibrateISR();
 
 const int8_t sensor_dx[numSensors] = {-1,1,-1,1};
 const int8_t sensor_dy[numSensors] = {1,1,-1,-1};
@@ -48,24 +47,18 @@ void setup () {
     for (int8_t i = 0; i < numSensors; i++) {
         pinMode(IRSENSORS[i],INPUT);
     }
-    pinMode(laser_en, OUTPUT);
-    pinMode(SZ_sig, INPUT);
+    pinMode(LASER_EN, OUTPUT);
+    pinMode(SZ_SIG, INPUT);
     servoX.attach(PIN_B5);
     servoY.attach(PIN_B6);
-    pinMode(TRK_sig, OUTPUT);
-    digitalWrite(TRK_sig,LOW);
+    pinMode(TRK_SIG, OUTPUT);
+    digitalWrite(TRK_SIG,LOW);
     servoX.write(servoXRestPos);
     servoY.write(servoYRestPos);
 
     pinMode(CAL_BTN, INPUT_PULLUP);
-    // attachInterrupt(digitalPinToInterrupt(CAL_BTN), onCalibrateISR, FALLING);
 }
 void loop () {
-    // TODO:
-    // if (calibrationRequested) {
-    //     calibrateSensors();
-    //     calibrationRequested = false;
-    // }
     if (!digitalRead(CAL_BTN)) {
         calibrateSensors(); // Calibrate when CAL button has been set to low, it is on internal pull up.
     }
@@ -73,7 +66,7 @@ void loop () {
     bool TRK = false;
     bool laser = false;
 
-    if (digitalRead(SZ_sig)) { // If in slow zone, activate turret. This will be a 3v3 signal from the line-follower mainboard.
+    if (digitalRead(SZ_SIG)) { // If in slow zone, activate turret. This will be a 3v3 signal from the line-follower mainboard.
         if (targetAcquired()) {
             TRK = true;
             int8_t dx = 0;
@@ -97,8 +90,8 @@ void loop () {
             scanServoX();
         }
 
-        digitalWrite(TRK_sig,TRK);
-        digitalWrite(laser_en,laser);
+        digitalWrite(TRK_SIG,TRK);
+        digitalWrite(LASER_EN,laser);
 
     } else {
         TRK = false;
@@ -111,13 +104,13 @@ void loop () {
 
 void calibrateSensors() {
     for (int8_t i = 0; i < numSensors; i++) {
-        sensorCalibration[i] = analogRead(IRSENSORS[i]) * (5.0 / 1023.0); // converts to Volts
+        sensorCalibration[i] = analogRead(IRSENSORS[i]); // converts to Volts
     }
 }
 
 bool readSensor(int8_t i) {
-    double rawSensorValue = analogRead(IRSENSORS[i]) * (5.0 / 1023.0);
-    double delta = sensorCalibration[i] - rawSensorValue; // Sensor conduct when target is in view, dropping voltage.
+    int rawSensorValue = analogRead(IRSENSORS[i]);
+    int delta = round(sensorCalibration[i] - rawSensorValue); // Sensor conduct when target is in view, dropping voltage.
     
     return delta > detectionThreshold; // Threshold to differentiate between background noise and target.
 }
@@ -132,7 +125,7 @@ bool targetAcquired() { // Check if any sensors see the target.
 void scanServoX() {
     static int8_t angle = 0;
     static bool dir = 1;
-
+    angle = (servoX.read() + (dir ? 5 : -5));
     if (angle >= 180) {
         angle = 180;
         dir = false;
@@ -142,13 +135,3 @@ void scanServoX() {
     }
     servoX.write(constrain(angle, 0, 180));
 }
-
-// This is a nice to have, get working later.
-// void onCalibrateISR() {
-//     static unsigned long lastInterruptTime = 0;
-//     unsigned long now = millis();
-//     if (now - lastInterruptTime > 50) {
-//         calibrationRequested = true;
-//         lastInterruptTime = now;
-//     }
-// }
