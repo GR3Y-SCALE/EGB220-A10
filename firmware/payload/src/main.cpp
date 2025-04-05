@@ -1,18 +1,14 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define S1 PIN_F0
-#define S2 PIN_F1
-#define S3 PIN_F4
-#define S4 PIN_F5
-const int8_t IRSENSORS[4] = {S3,S2,S4,S1}; // Order of IR sensors on the PCB
-const int8_t numSensors = 4;
-#define laser_en PIN_F6
-Servo servoX;
-Servo servoY;
-#define SZ_sig PIN_B7
-#define TRK_sig PIN_D0
-#define CAL_BTN PIN_D1
+#define S1 PIN_A0
+#define S2 PIN_A1
+#define S3 PIN_A2
+#define S4 PIN_A3
+#define laser_en PIN0
+#define SZ_sig 1
+#define TRK_sig 2
+#define CAL_BTN 8
 
 /* SENSOR CONFIGURATION
    _________________
@@ -25,7 +21,10 @@ Servo servoY;
   \______|__|_______/
 
 */
-
+Servo servoX;
+Servo servoY;
+const int8_t IRSENSORS[4] = {S1,S2,S3,S4}; // Order of IR sensors on the PCB
+const int8_t numSensors = 4;
 double sensorCalibration[numSensors] = {0,0,0,0};
 const float detectionThreshold = 0.100; // 100mV drop from background level
 int8_t servoXRestPos = 90;
@@ -48,8 +47,8 @@ void setup () {
     }
     pinMode(laser_en, OUTPUT);
     pinMode(SZ_sig, INPUT);
-    servoX.attach(PIN_B5);
-    servoY.attach(PIN_B6);
+    servoX.attach(9);
+    servoY.attach(10);
     pinMode(TRK_sig, OUTPUT);
     digitalWrite(TRK_sig,LOW);
     servoX.write(servoXRestPos);
