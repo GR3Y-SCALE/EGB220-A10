@@ -25,6 +25,19 @@ float Kd = 0.1;
 float previousError = 0;
 float integral = 0;
 
+// Motor speed PWM
+int motorSpeed = 100;
+
+// Sensor values
+int sValues[8];
+
+
+// Function definitions, so we can keep the structure of setup(), loop() up top, makes things a bit cleaner.
+void readsensors();
+int calculateError(int sValues[]);
+void PIDMotorControl(int error);
+
+
 void setup() {
   // Initialize IR sensor pins as INPUT
   pinMode(s1, INPUT);
@@ -45,8 +58,32 @@ void setup() {
   Serial.begin(9600);  // Start serial communication for debugging
 }
 
+void loop() {
+  readsensors();
 
-void readsensors(int sValues[]){
+  // Print sensor readings
+  for (int i = 0; i < 8; i++) {
+    Serial.print("S ");
+    Serial.print(i + 1);  // Display sensor number (1 to 8)
+    Serial.print(": ");
+    Serial.println(sValues[i]);
+  }
+
+  // Calculate error based on the sensor readings
+  int error = calculateError(sValues);
+
+  // Print the error for debugging
+  Serial.print("Error: ");
+  Serial.println(error);
+
+  // Apply PID control to adjust motor speeds
+  PIDMotorControl(error);
+
+  delay(50); 
+
+}
+
+void readsensors(){
   // Read values from the IR sensors using defined pin names and store them to sValues[]
   sValues[0] = analogRead(s8);
   sValues[1] = analogRead(s7);
@@ -105,9 +142,6 @@ void PIDMotorControl(int error) {
   Serial.print("PID Output: ");
   Serial.println(output);
 
-  // Motor control logic based on PID output
-  int motorSpeed = 180;  // Base motor speed (you can adjust this)
-
   // Apply PID correction to the motors
   int leftMotorSpeed = motorSpeed - output;  
   int rightMotorSpeed = motorSpeed + output;
@@ -129,30 +163,3 @@ void PIDMotorControl(int error) {
   // Update the previous error for the next loop
   previousError = error;
 }
-
-void loop() {
-    // Obtain sensor reading
-    int sValues[8];  // Create an array to store the sensor readings
-    readsensors(sValues);  // Pass the array to the readsensors function
-  
-    // Print sensor readings
-    for (int i = 0; i < 8; i++) {
-      Serial.print("S ");
-      Serial.print(i + 1);  // Display sensor number (1 to 8)
-      Serial.print(": ");
-      Serial.println(sValues[i]);
-    }
-  
-    // Calculate error based on the sensor readings
-    int error = calculateError(sValues);
-  
-    // Print the error for debugging
-    Serial.print("Error: ");
-    Serial.println(error);
-  
-    // Apply PID control to adjust motor speeds
-    PIDMotorControl(error);
-  
-    delay(50);  // Short delay for smooth motor control
-
-  }
