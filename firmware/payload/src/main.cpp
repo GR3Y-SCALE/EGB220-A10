@@ -54,8 +54,8 @@ void setup () {
     servoX.write(servoXRestPos);
     servoY.write(servoYRestPos);
 
-    pinMode(CAL_BTN, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(CAL_BTN), onCalibrateISR, FALLING);
+    pinMode(CAL_BTN, INPUT);
+    // attachInterrupt(digitalPinToInterrupt(CAL_BTN), onCalibrateISR, FALLING);
     Serial.begin(9600);
 }
 void loop () {
@@ -63,8 +63,11 @@ void loop () {
         Serial.print(sensorCalibration[i]);
         Serial.print(" "); 
       }
-      Serial.println(); 
+      Serial.println();
 
+    if (CAL_BTN) {
+        calibrateSensors();
+    }
     if (calibrationRequested) {
         calibrateSensors();
         calibrationRequested = false;
@@ -110,7 +113,7 @@ void loop () {
 
 void calibrateSensors() {
     for (int8_t i = 0; i < numSensors; i++) {
-        sensorCalibration[i] = analogRead(IRSENSORS[i]) * (5.0 / 1023.0); // converts to V
+        sensorCalibration[i] = analogRead(IRSENSORS[i] * (5.0 / 1023.0)); // converts to V
     }
 }
 
