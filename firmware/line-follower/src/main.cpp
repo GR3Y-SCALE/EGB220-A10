@@ -17,19 +17,20 @@
 #define motorRightPWM 11    // PWM pin for right motor speed
 
 // PID constants
-float Kp = 10.0;  
+float Kp = 15.0;  
 float Ki = 0.05; 
-float Kd = 0.1;  
+float Kd = 0.5;  
 
 // Variables for PID
 float previousError = 0;
 float integral = 0;
 
 // Motor speed PWM
-int motorSpeed = 100;
+int motorSpeed = 50;
 
 // Sensor values
 int sValues[8];
+int threshold = 300; // Anything below this value is white
 
 
 // Function definitions, so we can keep the structure of setup(), loop() up top, makes things a bit cleaner.
@@ -79,8 +80,7 @@ void loop() {
   // Apply PID control to adjust motor speeds
   PIDMotorControl(error);
 
-  delay(50); 
-
+  delay(1);
 }
 
 void readsensors(){
@@ -98,7 +98,6 @@ void readsensors(){
 
 int calculateError(int sValues[]) {
   int error = 0;
-  int threshold = 100;  // Adjust threshold based on sensor calibration
 
   // Check if center sensors (4th and 5th) are detecting the white line
   if (sValues[3] < threshold && sValues[4] < threshold) {
@@ -121,6 +120,8 @@ int calculateError(int sValues[]) {
         break;
       }
     }
+
+
   }
 
   return error;
@@ -130,6 +131,8 @@ void PIDMotorControl(int error) {
   // Calculate PID terms
   float derivative = error - previousError;
   integral += error;
+  if (integral > 100) integral = 100;
+  if (integral < -100) integral = -100;
 
   // Calculate the PID output (adjust the formula for your application)
   float output = Kp * error + Ki * integral + Kd * derivative;
