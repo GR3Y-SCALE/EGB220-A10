@@ -54,6 +54,7 @@ void setup () {
     digitalWrite(TRK_SIG,LOW);
     servoX.write(servoXRestPos);
     servoY.write(servoYRestPos);
+    Serial.begin(9600);
 
     pinMode(CAL_BTN, INPUT_PULLUP);
 }
@@ -74,6 +75,8 @@ void loop () {
                 bool sensorValue = readSensor(i);
                 dx += sensorValue * sensor_dx[i];
                 dy += sensorValue * sensor_dy[i];
+                // Serial.print("Sensor: " + readSensor(i)); 
+                
             }
             int8_t norm_dx = (dx > 0) - (dx < 0); //Normalise the difference in dx dy to 1 or 0.
             int8_t norm_dy = (dy > 0) - (dy < 0);
@@ -98,7 +101,7 @@ void loop () {
         servoX.write(servoXRestPos);
         servoY.write(servoYRestPos);
     }
-    delay(20);
+    delay(50);
 }
 
 void calibrateSensors() {
@@ -109,6 +112,7 @@ void calibrateSensors() {
 
 bool readSensor(int8_t i) {
     int rawSensorValue = analogRead(IRSENSORS[i]);
+    Serial.println("Sensor: "  + String(i) + " Value: " + String(rawSensorValue));
     int delta = round(sensorCalibration[i] - rawSensorValue); // Sensor conduct when target is in view, dropping voltage.
     
     return delta > detectionThreshold; // Threshold to differentiate between background noise and target.
@@ -124,7 +128,7 @@ bool targetAcquired() { // Check if any sensors see the target.
 void scanServoX() {
     static int8_t angle = 0;
     static bool dir = 1;
-    angle = (servoX.read() + (dir ? 5 : -5));
+    angle = (servoX.read() + (dir ? 1 : -1));
     if (angle >= 180) {
         angle = 180;
         dir = false;
