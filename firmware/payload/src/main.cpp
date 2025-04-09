@@ -5,8 +5,8 @@
 #define S2 PIN_A1
 #define S3 PIN_A2
 #define S4 PIN_A3
-#define LASER_EN PIN0
-#define SZ_SIG 1
+#define LASER_EN 6
+#define SZ_SIG 7
 #define TRK_SIG 2
 #define CAL_BTN 8
 
@@ -23,11 +23,11 @@
 */
 Servo servoX;
 Servo servoY;
-const int8_t IRSENSORS[4] = {S2,S3,S1,S4}; // Order of IR sensors on the PCB
+const int8_t IRSENSORS[4] = {S1,S2,S3,S4}; // Order of IR sensors on the PCB
 const int8_t numSensors = 4;
 
 int sensorCalibration[numSensors] = {0,0,0,0};
-const int detectionThreshold = 20; // 20 5mV increments, therefore 100mV threshold
+const int detectionThreshold = 1; // 20 5mV increments, therefore 100mV threshold
 
 int8_t servoXRestPos = 90;
 int8_t servoYRestPos = 90;
@@ -89,7 +89,7 @@ void loop () {
         } else { //Target lost or not found, scan to find target.
             TRK = false;
             laser = false;
-            scanServoX();
+            // scanServoX();
         }
 
         digitalWrite(TRK_SIG,TRK);
@@ -112,8 +112,8 @@ void calibrateSensors() {
 
 bool readSensor(int8_t i) {
     int rawSensorValue = analogRead(IRSENSORS[i]);
-    Serial.println("Sensor: "  + String(i) + " Value: " + String(rawSensorValue));
     int delta = round(sensorCalibration[i] - rawSensorValue); // Sensor conduct when target is in view, dropping voltage.
+    // Serial.println("Sensor: "  + String(i) + " Value: " + String(rawSensorValue) + " Detected: " + String(delta > detectionThreshold));
     
     return delta > detectionThreshold; // Threshold to differentiate between background noise and target.
 }
