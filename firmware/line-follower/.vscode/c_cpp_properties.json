@@ -10,8 +10,7 @@
             "includePath": [
                 "/Users/mauriceblake/Documents/university/2025-1/EGB220/github/EGB220-A10/firmware/line-follower/include",
                 "/Users/mauriceblake/Documents/university/2025-1/EGB220/github/EGB220-A10/firmware/line-follower/src",
-                "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/cores/teensy",
-                "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/cores",
+                "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/cores/teensy4",
                 "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/libraries/ADC",
                 "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/libraries/AccelStepper/src",
                 "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_NeoPixel",
@@ -118,8 +117,7 @@
                 "path": [
                     "/Users/mauriceblake/Documents/university/2025-1/EGB220/github/EGB220-A10/firmware/line-follower/include",
                     "/Users/mauriceblake/Documents/university/2025-1/EGB220/github/EGB220-A10/firmware/line-follower/src",
-                    "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/cores/teensy",
-                    "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/cores",
+                    "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/cores/teensy4",
                     "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/libraries/ADC",
                     "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/libraries/AccelStepper/src",
                     "/Users/mauriceblake/.platformio/packages/framework-arduinoteensy/libraries/Adafruit_NeoPixel",
@@ -224,20 +222,23 @@
             },
             "defines": [
                 "PLATFORMIO=60118",
-                "ARDUINO_ARCH_AVR",
-                "ARDUINO_TEENSY2",
+                "__IMXRT1062__",
+                "ARDUINO_TEENSY40",
                 "USB_SERIAL",
                 "ARDUINO=10805",
                 "TEENSYDUINO=159",
                 "CORE_TEENSY",
-                "F_CPU=16000000L",
+                "F_CPU=600000000",
                 "LAYOUT_US_ENGLISH",
                 ""
             ],
-            "cppStandard": "gnu++11",
-            "compilerPath": "/Users/mauriceblake/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin/avr-gcc",
+            "cppStandard": "gnu++17",
+            "compilerPath": "/Users/mauriceblake/.platformio/packages/toolchain-gccarmnoneeabi-teensy/bin/arm-none-eabi-gcc",
             "compilerArgs": [
-                "-mmcu=atmega32u4",
+                "-mthumb",
+                "-mcpu=cortex-m7",
+                "-mfloat-abi=hard",
+                "-mfpu=fpv5-d16",
                 ""
             ]
         }
