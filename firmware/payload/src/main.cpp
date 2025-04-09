@@ -101,7 +101,7 @@ void loop () {
         servoX.write(servoXRestPos);
         servoY.write(servoYRestPos);
     }
-    delay(50);
+    delay(60);
 }
 
 void calibrateSensors() {
