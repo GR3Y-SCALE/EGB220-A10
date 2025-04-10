@@ -1,14 +1,14 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#define S1 PIN_F0
-#define S2 PIN_F1
-#define S3 PIN_F4
-#define S4 PIN_F5
-#define LASER_EN PIN_F6
-#define SZ_SIG PIN_B7
-#define TRK_SIG PIN_D0
-#define CAL_BTN PIN_D1
+#define S1 PIN_A0
+#define S2 PIN_A1
+#define S3 PIN_A2
+#define S4 PIN_A3
+#define LASER_EN 6
+#define SZ_SIG 7
+#define TRK_SIG 2
+#define CAL_BTN 8
 
 /* SENSOR CONFIGURATION
    _________________
@@ -21,6 +21,13 @@
   \______|__|_______/
 
 */
+Servo servoX;
+Servo servoY;
+const int8_t IRSENSORS[4] = {S1,S2,S3,S4}; // Order of IR sensors on the PCB
+const int8_t numSensors = 4;
+
+int sensorCalibration[numSensors] = {0,0,0,0};
+const int detectionThreshold = 1; // 20 5mV increments, therefore 100mV threshold
 
 Servo servoX;
 Servo servoY;
@@ -49,12 +56,13 @@ void setup () {
     }
     pinMode(LASER_EN, OUTPUT);
     pinMode(SZ_SIG, INPUT);
-    servoX.attach(PIN_B5);
-    servoY.attach(PIN_B6);
+    servoX.attach(9);
+    servoY.attach(10);
     pinMode(TRK_SIG, OUTPUT);
     digitalWrite(TRK_SIG,LOW);
     servoX.write(servoXRestPos);
     servoY.write(servoYRestPos);
+    Serial.begin(9600);
 
     pinMode(CAL_BTN, INPUT_PULLUP);
 }
@@ -87,7 +95,7 @@ void loop () {
         } else { //Target lost or not found, scan to find target.
             TRK = false;
             laser = false;
-            scanServoX();
+            // scanServoX();
         }
 
         digitalWrite(TRK_SIG,TRK);
@@ -99,7 +107,7 @@ void loop () {
         servoX.write(servoXRestPos);
         servoY.write(servoYRestPos);
     }
-    delay(20);
+    delay(60);
 }
 
 void calibrateSensors() {
@@ -125,7 +133,7 @@ bool targetAcquired() { // Check if any sensors see the target.
 void scanServoX() {
     static int8_t angle = 0;
     static bool dir = 1;
-    angle = (servoX.read() + (dir ? 5 : -5));
+    angle = (servoX.read() + (dir ? 1 : -1));
     if (angle >= 180) {
         angle = 180;
         dir = false;
