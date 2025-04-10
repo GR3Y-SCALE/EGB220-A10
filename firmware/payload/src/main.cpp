@@ -29,6 +29,14 @@ const int8_t numSensors = 4;
 int sensorCalibration[numSensors] = {0,0,0,0};
 const int detectionThreshold = 1; // 20 5mV increments, therefore 100mV threshold
 
+Servo servoX;
+Servo servoY;
+const int8_t IRSENSORS[4] = {S2,S3,S1,S4}; // Order of IR sensors on the PCB
+const int8_t numSensors = 4;
+
+int sensorCalibration[numSensors] = {0,0,0,0};
+const int detectionThreshold = 20; // 20 5mV increments, therefore 100mV threshold
+
 int8_t servoXRestPos = 90;
 int8_t servoYRestPos = 90;
 
@@ -75,8 +83,6 @@ void loop () {
                 bool sensorValue = readSensor(i);
                 dx += sensorValue * sensor_dx[i];
                 dy += sensorValue * sensor_dy[i];
-                // Serial.print("Sensor: " + readSensor(i)); 
-                
             }
             int8_t norm_dx = (dx > 0) - (dx < 0); //Normalise the difference in dx dy to 1 or 0.
             int8_t norm_dy = (dy > 0) - (dy < 0);
@@ -113,7 +119,6 @@ void calibrateSensors() {
 bool readSensor(int8_t i) {
     int rawSensorValue = analogRead(IRSENSORS[i]);
     int delta = round(sensorCalibration[i] - rawSensorValue); // Sensor conduct when target is in view, dropping voltage.
-    // Serial.println("Sensor: "  + String(i) + " Value: " + String(rawSensorValue) + " Detected: " + String(delta > detectionThreshold));
     
     return delta > detectionThreshold; // Threshold to differentiate between background noise and target.
 }

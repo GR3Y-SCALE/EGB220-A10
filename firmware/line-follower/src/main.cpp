@@ -17,13 +17,27 @@
 #define motorRightPWM 11    // PWM pin for right motor speed
 
 // PID constants
-float Kp = 10.0;  
+float Kp = 15.0;  
 float Ki = 0.05; 
-float Kd = 0.1;  
+float Kd = 0.5;  
 
 // Variables for PID
 float previousError = 0;
 float integral = 0;
+
+// Motor speed PWM
+int motorSpeed = 50;
+
+// Sensor values
+int sValues[8];
+int threshold = 300; // Anything below this value is white
+
+
+// Function definitions, so we can keep the structure of setup(), loop() up top, makes things a bit cleaner.
+void readsensors();
+int calculateError(int sValues[]);
+void PIDMotorControl(int error);
+
 
 void setup() {
   // Initialize IR sensor pins as INPUT
@@ -45,8 +59,31 @@ void setup() {
   Serial.begin(9600);  // Start serial communication for debugging
 }
 
+void loop() {
+  readsensors();
 
-void readsensors(int sValues[]){
+  // Print sensor readings
+  for (int i = 0; i < 8; i++) {
+    Serial.print("S ");
+    Serial.print(i + 1);  // Display sensor number (1 to 8)
+    Serial.print(": ");
+    Serial.println(sValues[i]);
+  }
+
+  // Calculate error based on the sensor readings
+  int error = calculateError(sValues);
+
+  // Print the error for debugging
+  Serial.print("Error: ");
+  Serial.println(error);
+
+  // Apply PID control to adjust motor speeds
+  PIDMotorControl(error);
+
+  delay(1);
+}
+
+void readsensors(){
   // Read values from the IR sensors using defined pin names and store them to sValues[]
   sValues[0] = analogRead(s8);
   sValues[1] = analogRead(s7);
@@ -61,7 +98,6 @@ void readsensors(int sValues[]){
 
 int calculateError(int sValues[]) {
   int error = 0;
-  int threshold = 100;  // Adjust threshold based on sensor calibration
 
   // Check if center sensors (4th and 5th) are detecting the white line
   if (sValues[3] < threshold && sValues[4] < threshold) {
@@ -84,6 +120,8 @@ int calculateError(int sValues[]) {
         break;
       }
     }
+
+
   }
 
   return error;
@@ -93,6 +131,8 @@ void PIDMotorControl(int error) {
   // Calculate PID terms
   float derivative = error - previousError;
   integral += error;
+  if (integral > 100) integral = 100;
+  if (integral < -100) integral = -100;
 
   // Calculate the PID output (adjust the formula for your application)
   float output = Kp * error + Ki * integral + Kd * derivative;
@@ -104,9 +144,6 @@ void PIDMotorControl(int error) {
   // Print the PID output for debugging
   Serial.print("PID Output: ");
   Serial.println(output);
-
-  // Motor control logic based on PID output
-  int motorSpeed = 180;  // Base motor speed (you can adjust this)
 
   // Apply PID correction to the motors
   int leftMotorSpeed = motorSpeed - output;  
@@ -129,30 +166,3 @@ void PIDMotorControl(int error) {
   // Update the previous error for the next loop
   previousError = error;
 }
-
-void loop() {
-    // Obtain sensor reading
-    int sValues[8];  // Create an array to store the sensor readings
-    readsensors(sValues);  // Pass the array to the readsensors function
-  
-    // Print sensor readings
-    for (int i = 0; i < 8; i++) {
-      Serial.print("S ");
-      Serial.print(i + 1);  // Display sensor number (1 to 8)
-      Serial.print(": ");
-      Serial.println(sValues[i]);
-    }
-  
-    // Calculate error based on the sensor readings
-    int error = calculateError(sValues);
-  
-    // Print the error for debugging
-    Serial.print("Error: ");
-    Serial.println(error);
-  
-    // Apply PID control to adjust motor speeds
-    PIDMotorControl(error);
-  
-    delay(50);  // Short delay for smooth motor control
-
-  }
