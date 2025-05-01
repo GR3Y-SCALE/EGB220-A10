@@ -511,7 +511,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "gerbers/payload_controlboard_v1.1",
+      "plot": "gerbers/payload_controlboard_v1.2/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
