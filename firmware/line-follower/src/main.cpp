@@ -86,7 +86,7 @@ void loop() {
       Serial.print("State: STRAIGHT");
 
       //green led on
-      int error = calculateError(sValues);
+      error = calculateError(sValues);
       PIDMotorControl(error);
       delay(1);
 
@@ -113,7 +113,7 @@ void loop() {
       Serial.print("State: TURNING");
 
       motorSpeed = 50;
-      int error = calculateError(sValues);
+      error = calculateError(sValues);
       PIDMotorControl(error);
 
       if(!CURVED){

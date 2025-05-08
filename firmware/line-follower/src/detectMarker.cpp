@@ -22,10 +22,10 @@ void detectMarker (void){
 
 //Detect Slow Zone Marker
 void SZDetector(void){
-    if(mValues[1]>Green & mValues[1]<Red){
+    if(mValues[1]>Green && mValues[1]<Red){
         SZ = true;
     }
-    else if(mValues[1]<Green & mValues[1]>StartStop){
+    else if(mValues[1]<Green && mValues[1]>StartStop){
         SZ = false;
     }
 }
