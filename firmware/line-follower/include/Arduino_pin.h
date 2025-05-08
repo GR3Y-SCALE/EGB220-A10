@@ -8,6 +8,15 @@
 #define s7 A11
 #define s8 A6
 
+//Define Left Right Marker Sensor
+#define sL A4   //reconfig pin during tuning
+#define sR A5   //reconfig pin during tuning
+
+//Define Red, Green, Blue LED
+#define RLED
+#define GLED
+#define BLED
+
 // Motor Pins
 #define motorLeftDir 7      // Direction pin for left motor
 #define motorLeftPWM 3      // PWM pin for left motor speed
