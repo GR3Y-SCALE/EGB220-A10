@@ -52,12 +52,17 @@ void setup() {
   pinMode(GLED, OUTPUT);
 
   //initialize push button 
+  pinMode(StartButton, INPUT);
   
   // Initialize Left and Right Motor 
-  pinMode(motorLeftDir, OUTPUT);
+  //pinMode(motorLeftDir, OUTPUT);
   pinMode(motorLeftPWM, OUTPUT);
-  pinMode(motorRightDir, OUTPUT);
+  //pinMode(motorRightDir, OUTPUT);
   pinMode(motorRightPWM, OUTPUT);
+
+  // Initialize Payload Pins
+  pinMode(SZ_SIG, OUTPUT);
+  pinMode(TRK_SIG, INPUT);
 
   Serial.begin(9600);  // Start serial communication for debugging
 }
@@ -78,10 +83,12 @@ void loop() {
     case IDLE:
       Serial.print("State: IDLE");
       digitalWrite(RLED,HIGH); //red led on
-      //if button is pressed
+
+      if(analogRead(StartButton)){           //if button is pressed
       digitalWrite(RLED,LOW);//red led off
       motorSpeed = 50;
       currentState = STRAIGHT;
+      }
       break;
     
     case STRAIGHT:
@@ -126,7 +133,7 @@ void loop() {
     case SLOW_ZONE:
       Serial.print("State: SLOW_ZONE");
       
-      //send high to payload pin
+      digitalWrite(SZ_SIG, HIGH); //send high to payload pin
 
       motorSpeed = 25;
       error = calculateError(sValues);
@@ -134,10 +141,21 @@ void loop() {
 
       digitalWrite(GLED,HIGH);//turn on green led for light following
       
+      //if log bumper switch is high
       digitalWrite(BLED,HIGH);//if in contact with obs, turn blue led on
+      // else
+      digitalWrite(BLED, LOW);
+
+      if(digitalRead(TRK_SIG)){
+        //digitalWrite(YLED,HIGH); Yellow LED on when tracking
+      }
+      else{
+        //digitalWrite(YLED,LOW);
+      }
 
       if(!SZ){
-        //send low to payload pin
+        digitalWrite(SZ_SIG, LOW);  //send low to payload pin
+        digitalWrite(GLED,LOW);
         currentState = STRAIGHT;
         motorSpeed = 50;
       }

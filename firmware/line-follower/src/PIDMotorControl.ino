@@ -51,10 +51,10 @@ void PIDMotorControl(int error) {
     if (rightMotorSpeed > 255) rightMotorSpeed = 255;
   
     // Set the motor speeds (same direction for both motors)
-    digitalWrite(motorLeftDir, HIGH);  // Left motor forward
+    //digitalWrite(motorLeftDir, HIGH);  // Left motor forward
     analogWrite(motorLeftPWM, leftMotorSpeed);  // Set left motor speed
   
-    digitalWrite(motorRightDir, HIGH);  // Right motor forward
+    //digitalWrite(motorRightDir, HIGH);  // Right motor forward
     analogWrite(motorRightPWM, rightMotorSpeed);  // Set right motor speed
   
     // Update the previous error for the next loop
