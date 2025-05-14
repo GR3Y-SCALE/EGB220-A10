@@ -12,9 +12,9 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug",
-            "executable": "/Users/rohankapil/EGB220-A10/firmware/line-follower/.pio/build/spark_mk2/firmware.elf",
+            "executable": "C:/Users/javie/OneDrive - Queensland University of Technology (1)/Year 2/Sem1/EGB220/github/EGB220-A10/firmware/line-follower/.pio/build/spark_mk2/firmware.elf",
             "projectEnvName": "spark_mk2",
-            "toolchainBinDir": "/Users/rohankapil/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
+            "toolchainBinDir": "C:/Users/javie/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": {
                 "type": "PlatformIO",
@@ -25,18 +25,18 @@
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (skip Pre-Debug)",
-            "executable": "/Users/rohankapil/EGB220-A10/firmware/line-follower/.pio/build/spark_mk2/firmware.elf",
+            "executable": "C:/Users/javie/OneDrive - Queensland University of Technology (1)/Year 2/Sem1/EGB220/github/EGB220-A10/firmware/line-follower/.pio/build/spark_mk2/firmware.elf",
             "projectEnvName": "spark_mk2",
-            "toolchainBinDir": "/Users/rohankapil/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
+            "toolchainBinDir": "C:/Users/javie/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "type": "platformio-debug",
             "request": "launch",
             "name": "PIO Debug (without uploading)",
-            "executable": "/Users/rohankapil/EGB220-A10/firmware/line-follower/.pio/build/spark_mk2/firmware.elf",
+            "executable": "C:/Users/javie/OneDrive - Queensland University of Technology (1)/Year 2/Sem1/EGB220/github/EGB220-A10/firmware/line-follower/.pio/build/spark_mk2/firmware.elf",
             "projectEnvName": "spark_mk2",
-            "toolchainBinDir": "/Users/rohankapil/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
+            "toolchainBinDir": "C:/Users/javie/.platformio/packages/toolchain-atmelavr@1.50400.190710/bin",
             "internalConsoleOptions": "openOnSessionStart",
             "loadMode": "manual"
         }
