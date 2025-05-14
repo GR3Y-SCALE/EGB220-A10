@@ -46,7 +46,10 @@ void setup() {
   pinMode(sL, INPUT);
   pinMode(sR, INPUT);
 
-  //Initialize Shift Register, CLK and Latch for LEDS
+  //Initialize LEDS
+  pinMode(RLED, OUTPUT);
+  pinMode(BLED, OUTPUT);
+  pinMode(GLED, OUTPUT);
 
   //initialize push button 
   
@@ -74,10 +77,9 @@ void loop() {
   switch (currentState){
     case IDLE:
       Serial.print("State: IDLE");
-      //red led on
-
+      digitalWrite(RLED,HIGH); //red led on
       //if button is pressed
-      //red led off
+      digitalWrite(RLED,LOW);//red led off
       motorSpeed = 50;
       currentState = STRAIGHT;
       break;
@@ -85,7 +87,7 @@ void loop() {
     case STRAIGHT:
       Serial.print("State: STRAIGHT");
 
-      //green led on
+      digitalWrite(GLED,HIGH); //green led on
       error = calculateError(sValues);
       PIDMotorControl(error);
       delay(1);
@@ -94,17 +96,17 @@ void loop() {
       if (motorSpeed > 120) motorSpeed = 120;
 
       if(SZ){
-        //turn green led off
+        digitalWrite(GLED,LOW);//turn green led off
         currentState = SLOW_ZONE;
       }
 
       if(SSDetected && !SSMarker){
-        //turn green led off
+        digitalWrite(GLED,LOW);//turn green led off
         currentState = STOPPING;
       }
 
       if(CURVED){
-        //turn green led off
+        digitalWrite(GLED,LOW);//turn green led off
         currentState = TURNING;
       }
       break;
@@ -130,8 +132,9 @@ void loop() {
       error = calculateError(sValues);
       PIDMotorControl(error);  
 
-      //turn on green led for light following
-      //if in contact with obs, turn blue led on
+      digitalWrite(GLED,HIGH);//turn on green led for light following
+      
+      digitalWrite(BLED,HIGH);//if in contact with obs, turn blue led on
 
       if(!SZ){
         //send low to payload pin
@@ -143,7 +146,7 @@ void loop() {
     case STOPPING:
       Serial.print("State: STOPPING");
 
-      //turn red led on
+      digitalWrite(RLED,HIGH);//turn red led on
 
       motorSpeed -= 5;
       if (motorSpeed<0){
@@ -164,7 +167,7 @@ void loop() {
      delay (2500);
 
      if(lap<3){
-      //red led off
+      digitalWrite(RLED,LOW);//red led off
       currentState = STRAIGHT;
       motorSpeed = 50;
       error = 0;
