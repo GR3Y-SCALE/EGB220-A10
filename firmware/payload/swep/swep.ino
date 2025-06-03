@@ -1,26 +1,17 @@
-#include <Servo.h>
+// #include <Servo.h>
 
-Servo X;
-Servo Y;
+// Servo X;
+// Servo Y;
 
 void setup() {
-  X.attach(9);
-  Y.attach(10);
-  pinMode(6, OUTPUT);
+  pinMode(11, OUTPUT);
 
 }
 
 void loop() {
-  digitalWrite(6,HIGH);
-  for (int i = 30; i <= 80; i++) {
-    X.write(i);
-    Y.write(i);
-    delay(50);
-  }
-  for (int i = 80; i >= 30; i--) {
-    X.write(i);
-    Y.write(i);
-    delay(50);
-  }
+  digitalWrite(11,HIGH);
+  delay(500);
+  digitalWrite(11,LOW);
+  delay(500);
 
 }

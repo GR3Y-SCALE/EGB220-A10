@@ -16,6 +16,7 @@
 #define RLED 0
 #define GLED 1
 #define BLED 2
+#define BUILTIN_LED 11
 
 // Motor Pins
 //#define motorLeftDir 7      // Direction pin for left motor

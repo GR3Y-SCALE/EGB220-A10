@@ -13,7 +13,7 @@ int mValues[2];
 bool SZ = false; //true when red is detected, false when green is detected
 bool SSDetected = false; //true when start stop marker detected
 bool SSMarker = false; //true when passed start marker, false when in startstop zone
-bool CURVED = false;
+bool CURVED = false; //True when turning, false when not.
 
 int error = 0;
 int lap = 0; 
@@ -21,6 +21,7 @@ int lap = 0;
 int motorSpeed = 50;
 
 enum State {
+  DEBUG,
   IDLE,
   STRAIGHT,
   TURNING,
@@ -29,7 +30,11 @@ enum State {
   STOPPED
 };
 
+#ifdef DEBUGGING // Checks for debugging flag
+State currentState = DEBUG;
+#else
 State currentState = IDLE;
+#endif
 
 void setup() {
   // Initialize IR sensor pins as INPUT
@@ -80,8 +85,37 @@ void loop() {
 
 
   switch (currentState){
+    case DEBUG: // Test follower mainboard to payload mainboard communications, servo operation and wheel motion
+      Serial.println("State: DEBUG");
+      delay(1000);
+      // Test Slow Zone signal
+      Serial.println("TESTING SZ SIGNAL");
+      for (int i = 0; i < 5; i++) {
+        digitalWrite(SZ_SIG, HIGH);
+        Serial.print("...ON");
+        delay(500);
+        digitalWrite(SZ_SIG, LOW);
+        Serial.print("...OFF");
+        delay(500);
+      }
+      Serial.println("...DONE!");
+      delay(5000);
+
+      Serial.println("TESTING TRK SIGNAL");
+      pinMode(TRK_SIG,OUTPUT);
+      for (int i = 0; i < 5; i++) {
+        digitalWrite(TRK_SIG, HIGH);
+        Serial.print("...ON");
+        delay(500);
+        digitalWrite(TRK_SIG, LOW);
+        Serial.print("...OFF");
+        delay(500);
+      }
+      Serial.println("...DONE!");
+      digitalWrite(BUILTIN_LED, HIGH); 
+      
     case IDLE:
-      Serial.print("State: IDLE");
+      Serial.println("State: IDLE");
       digitalWrite(RLED,HIGH); //red led on
 
       if(analogRead(StartButton)){           //if button is pressed
@@ -92,7 +126,7 @@ void loop() {
       break;
     
     case STRAIGHT:
-      Serial.print("State: STRAIGHT");
+      Serial.println("State: STRAIGHT");
 
       digitalWrite(GLED,HIGH); //green led on
       error = calculateError(sValues);
@@ -119,7 +153,7 @@ void loop() {
       break;
 
     case TURNING:
-      Serial.print("State: TURNING");
+      Serial.println("State: TURNING");
 
       motorSpeed = 50;
       error = calculateError(sValues);
@@ -131,7 +165,7 @@ void loop() {
       break;
 
     case SLOW_ZONE:
-      Serial.print("State: SLOW_ZONE");
+      Serial.println("State: SLOW_ZONE");
       
       digitalWrite(SZ_SIG, HIGH); //send high to payload pin
 

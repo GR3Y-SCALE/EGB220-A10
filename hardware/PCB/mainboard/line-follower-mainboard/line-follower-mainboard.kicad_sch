@@ -3954,16 +3954,8 @@
 		(uuid "1266916e-b2c0-4383-a30b-9dc2fea2157a")
 	)
 	(no_connect
-		(at 140.97 92.075)
-		(uuid "1b14af7c-ee4c-4deb-bbb6-8309b455d1a1")
-	)
-	(no_connect
 		(at 176.53 79.375)
 		(uuid "2333b7e2-2961-406b-9403-ba43d8c051fd")
-	)
-	(no_connect
-		(at 176.53 109.855)
-		(uuid "3230b90c-1581-4027-8ed0-15ce6b80204c")
 	)
 	(no_connect
 		(at 119.38 49.53)
@@ -4317,6 +4309,16 @@
 	)
 	(wire
 		(pts
+			(xy 21.59 156.21) (xy 27.94 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d0c4016-754b-4281-8f11-4e496a43e65f")
+	)
+	(wire
+		(pts
 			(xy 171.45 125.73) (xy 176.53 125.73)
 		)
 		(stroke
@@ -4654,16 +4656,6 @@
 			(type default)
 		)
 		(uuid "9ce92b8d-a488-4c31-8700-a09a3430f378")
-	)
-	(wire
-		(pts
-			(xy 21.59 156.21) (xy 27.94 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f99f68d-1a59-4ae3-b8e7-86f76bfa9e5c")
 	)
 	(wire
 		(pts
@@ -7334,7 +7326,8 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 16.51 156.21 0)
+		(at 16.51 158.75 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7342,7 +7335,7 @@
 		(dnp no)
 		(uuid "a0e76a37-b111-46a9-abed-09bc431c14fc")
 		(property "Reference" "J1"
-			(at 17.145 151.13 0)
+			(at 17.145 163.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7350,7 +7343,7 @@
 			)
 		)
 		(property "Value" "Xt30"
-			(at 17.78 153.67 0)
+			(at 17.78 161.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7358,7 +7351,7 @@
 			)
 		)
 		(property "Footprint" "Connector_AMASS:AMASS_XT30PW-M_1x02_P2.50mm_Horizontal"
-			(at 16.51 156.21 0)
+			(at 16.51 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7367,7 +7360,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 16.51 156.21 0)
+			(at 16.51 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7376,7 +7369,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 16.51 156.21 0)
+			(at 16.51 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7385,7 +7378,7 @@
 			)
 		)
 		(property "DigiKeyPartNumber" ""
-			(at 16.51 156.21 0)
+			(at 16.51 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)

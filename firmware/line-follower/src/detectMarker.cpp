@@ -21,11 +21,11 @@ void detectMarker (void){
 }
 
 //Detect Slow Zone Marker
-void SZDetector(void){
-    if(mValues[1]>Green && mValues[1]<Red){
+void SZDetector(void){ //Using right sensor
+    if(mValues[1]>GREEN && mValues[1]<RED){
         SZ = true;
     }
-    else if(mValues[1]<Green && mValues[1]>StartStop){
+    else if(mValues[1]<GREEN && mValues[1]>StartStop){
         SZ = false;
     }
 }
@@ -53,7 +53,7 @@ void SSDetector(void){
 
 //Detect Curved line
 void CURDetector (void){
-    if(mValues[0]<Turning){
+    if(mValues[0]<Turning){ // Left sensor
 
         if (!CURDetected){
             CURDetected = true;

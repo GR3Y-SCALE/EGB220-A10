@@ -2,10 +2,10 @@
 #include <Arduino_pin.h>
 
 //Calibrate threshold for White(StartStop and Turning), Red and Green, all threshold are the maximum value for each colour
-#define Red 1000
-#define Green 600
-#define StartStop 300
-#define Turning 300
+#define RED 1000
+#define GREEN 600
+#define StartStop 300 // This is a white marker
+#define Turning 300 // This is a white marker
 
 extern int error;
 
