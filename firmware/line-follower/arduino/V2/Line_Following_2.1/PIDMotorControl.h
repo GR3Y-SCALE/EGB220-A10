@@ -7,4 +7,9 @@ extern float Kd;
 extern float previousError;
 extern float integral; 
 
-void PIDMotorControl(int error);
+void PIDMotorControl();
+
+void stopMotors();
+
+extern int lap;
+extern bool SZ;

@@ -12,13 +12,16 @@ bool WaitingToExitCurve = false;
 unsigned long timer = 0;
 
 //For threshold Calibration Use
-const int LRSensorPin[] = {sL, sR};
+// const int LRSensorPin = 0;
 
-void detectMarker (void){
-    for(int i = 0; i < 2; i++){
-        mValues[i] = analogRead(LRSensorPin[i]);
-    }
-}
+// void detectMarker (void){
+//     for(int i = 0; i < 2; i++){
+//         mValues[i] = analogRead(0);
+//     }
+// }
+void detectMarker() {
+    mValues[0] = analogRead(0);
+} 
 
 //Detect Slow Zone Marker
 void SZDetector(void){ //Using right sensor

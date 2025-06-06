@@ -1,7 +1,7 @@
-#include <readsensors.h>
+#include "readsensors.h"
 
 #include <Arduino.h>
-#include <Arduino_pin.h>
+#include "Arduino_pin.h"
 
 extern int sValues[];
 const int sensorPins[] = {s8, s7, s6, s5, s4, s3, s2, s1};

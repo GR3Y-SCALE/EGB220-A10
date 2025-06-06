@@ -3,7 +3,7 @@
 #include <Arduino_pin.h>
 #include <readsensors.h>
 #include <calculateError.h>
-#include <PIDMotorControl.h>
+#include <motorControl.h>
 #include <detectMarker.h>
 
 //Sensors reading storage
@@ -15,10 +15,14 @@ bool SSDetected = false; //true when start stop marker detected
 bool SSMarker = false; //true when passed start marker, false when in startstop zone
 bool CURVED = false; //True when turning, false when not.
 
+const int sensorPins[] = {s1, s2, s3, s4, s5, s6, s7, s8};
+
 int error = 0;
 int lap = 0; 
 
 int motorSpeed = 50;
+
+const int motorTopSpeed = 120;
 
 enum State {
   DEBUG,
@@ -36,6 +40,13 @@ State currentState = DEBUG;
 State currentState = IDLE;
 #endif
 
+void readsensors(void){
+    // Read values from the IR sensors using defined pin names and store them to sValues[]
+    for(int i = 0; i < 8; i++){
+      sValues[i] = analogRead(sensorPins[i]);
+    }
+  }
+
 void setup() {
   // Initialize IR sensor pins as INPUT
   pinMode(s1, INPUT);
@@ -48,8 +59,8 @@ void setup() {
   pinMode(s8, INPUT);
 
   //Initialize Left Right Marker Sensors
-  pinMode(sL, INPUT);
-  pinMode(sR, INPUT);
+  //pinMode(sL, INPUT);
+  pinMode(sR, INPUT); // Unused
 
   //Initialize LEDS
   pinMode(RLED, OUTPUT);
@@ -60,10 +71,10 @@ void setup() {
   pinMode(StartButton, INPUT);
   
   // Initialize Left and Right Motor 
-  //pinMode(motorLeftDir, OUTPUT);
-  pinMode(motorLeftPWM, OUTPUT);
-  //pinMode(motorRightDir, OUTPUT);
-  pinMode(motorRightPWM, OUTPUT);
+  pinMode(motorLeftA, OUTPUT);
+  pinMode(motorLeftB, OUTPUT);
+  pinMode(motorRightA, OUTPUT);
+  pinMode(motorRightB, OUTPUT);
 
   // Initialize Payload Pins
   pinMode(SZ_SIG, OUTPUT);
@@ -134,7 +145,7 @@ void loop() {
       delay(1);
 
       motorSpeed += 5;
-      if (motorSpeed > 120) motorSpeed = 120;
+      if (motorSpeed > motorTopSpeed) motorSpeed = motorTopSpeed;
 
       if(SZ){
         digitalWrite(GLED,LOW);//turn green led off
@@ -213,8 +224,7 @@ void loop() {
     case STOPPED:
      Serial.print("State: STOPPED");
 
-     analogWrite(motorLeftPWM, 0);
-     analogWrite(motorRightPWM, 0);
+     stopMotors();
 
      delay (2500);
 
@@ -233,3 +243,5 @@ void loop() {
 
   }
 }
+
+

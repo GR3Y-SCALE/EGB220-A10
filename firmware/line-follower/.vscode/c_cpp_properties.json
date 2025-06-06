@@ -226,7 +226,7 @@
                 "PLATFORMIO=60118",
                 "ARDUINO_ARCH_AVR",
                 "ARDUINO_TEENSY2",
-                "DEBUGGING",
+                "TEENSY",
                 "USB_SERIAL",
                 "ARDUINO=10805",
                 "TEENSYDUINO=159",
